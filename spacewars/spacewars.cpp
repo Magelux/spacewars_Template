@@ -1,13 +1,14 @@
-#include <iostream>
-#include <vector>
-#include <cstdlib>
-#include <ctime>
-#include <conio.h> // För att läsa tangenttryckningar
+#include <iostream> // För std::cout, std::cin
+#include <vector> // För std::vector
+#include <cstdlib> // För rand(), srand()
+#include <ctime> // För att generera slumpmässiga tal
+#include <conio.h> // För att läsa tangenttryckningar 
 #include <thread>  // För std::this_thread
 #include <chrono>  // För std::chrono
+using namespace std;
 
 // Position och storlek
-struct AABB {
+struct AABB { 
     int x, y; // Övre vänstra hörnet
     int width, height;
 
@@ -74,7 +75,7 @@ public:
 
         // Ta bort asteroider som lämnat spelplanen
         asteroids.erase(
-            std::remove_if(asteroids.begin(), asteroids.end(),
+            remove_if(asteroids.begin(), asteroids.end(),
                            [this](const Asteroid& a) { return a.box.x < 0; }),
             asteroids.end());
     }
@@ -87,22 +88,22 @@ public:
         for (int y = 0; y < gridHeight; y++) {
             for (int x = 0; x < gridWidth; x++) {
                 if (player.box.x == x && player.box.y == y) {
-                    std::cout << "^"; // Rymdskeppet
+                    cout << "^"; // Rymdskeppet
                 } else {
                     bool isAsteroid = false;
                     for (const auto& asteroid : asteroids) {
                         if (asteroid.box.x == x && asteroid.box.y == y) {
-                            std::cout << "§"; // Asteroid
+                            cout << "§"; // Asteroid
                             isAsteroid = true;
                             break;
                         }
                     }
                     if (!isAsteroid) {
-                        std::cout << "."; // Tomt utrymme
+                        cout << "."; // Tomt utrymme
                     }
                 }
             }
-            std::cout << "\n";
+            cout << "\n";
         }
     }
 
@@ -127,7 +128,7 @@ public:
     }
 
     void sleep() {
-        std::this_thread::sleep_for(std::chrono::milliseconds(300));
+        this_thread::sleep_for(chrono::milliseconds(300));
     }
 
     void run() {
@@ -150,7 +151,7 @@ public:
                
             }
         }
-        std::cout << "\n\nGame Over!\n";
+        cout << "\n\nGame Over!\n";
     }
 };
 
