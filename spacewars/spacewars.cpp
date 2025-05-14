@@ -87,12 +87,12 @@ public:
         for (int y = 0; y < gridHeight; y++) {
             for (int x = 0; x < gridWidth; x++) {
                 if (player.box.x == x && player.box.y == y) {
-                    std::cout << "S"; // Rymdskeppet
+                    std::cout << "^"; // Rymdskeppet
                 } else {
                     bool isAsteroid = false;
                     for (const auto& asteroid : asteroids) {
                         if (asteroid.box.x == x && asteroid.box.y == y) {
-                            std::cout << "A"; // Asteroid
+                            std::cout << "§"; // Asteroid
                             isAsteroid = true;
                             break;
                         }
@@ -127,7 +127,7 @@ public:
     }
 
     void sleep() {
-        std::this_thread::sleep_for(std::chrono::milliseconds(174));
+        std::this_thread::sleep_for(std::chrono::milliseconds(300));
     }
 
     void run() {
@@ -143,9 +143,10 @@ public:
                 spawnAsteroid();
                 spawnAsteroid();
                 spawnAsteroid();
-                spawnAsteroid();
-                spawnAsteroid();
-                
+                //spawnAsteroid();
+                //spawnAsteroid();
+                //spawnAsteroid();
+                //spawnAsteroid();
                
             }
         }
@@ -156,7 +157,7 @@ public:
 int main() {
     srand(static_cast<unsigned>(time(0)));
 
-    Game game(60, 10);
+    Game game(30, 10);
     game.run();
 
     return 0;
